@@ -36,6 +36,7 @@ var passport = require('passport');
 var bunyan = require('bunyan');
 var config = require('./config');
 
+let idToken;
 // Start QuickStart here
 
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -121,7 +122,8 @@ passport.use(new OIDCStrategy({
     console.log(profile);
 
     // here's the raw id_token
-    console.log(req.body);
+    idToken = req.body;
+    console.log(idToken);
 
     if (!profile.oid) {
       return done(new Error("No oid found"), null);
@@ -187,8 +189,7 @@ app.get('/', function(req, res) {
 
 // '/account' is only available to logged in user
 app.get('/account', ensureAuthenticated, function(req, res) {
-  console.log(req.user)
-  res.render('account', { user: req.user });
+  res.render('account', { user: req.user, token: idToken});
 });
 
 app.get('/login',
