@@ -2,11 +2,12 @@
 exports.creds = {
   // Required. It must be tenant-specific endpoint, common endpoint is not supported to use B2C
   // feature.
-  identityMetadata: 'https://msaljsb2c.b2clogin.com/msaljsb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration', 
+  // identityMetadata: 'https://msaljsb2c.b2clogin.com/msaljsb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration',
   // or equivalently: 'https://login.microsoftonline.com/<tenant_guid>/v2.0/.well-known/openid-configuration'
+  identityMetadata: 'https://accessibleemploymentprod.b2clogin.com/accessibleemploymentprod.onmicrosoft.com/v2.0/.well-known/openid-configuration',
 
   // Required, the client ID of your app in AAD  
-  clientID: '0d35f244-fb82-4d58-bd23-d280cc0ef659',
+  clientID: '51dc7118-baa3-4914-baa5-cb858849e0cd',
 
   // Required, must be 'code', 'code id_token', 'id_token code' or 'id_token' 
   // If you want to get access_token, you must be 'code', 'code id_token' or 'id_token code'
@@ -23,7 +24,7 @@ exports.creds = {
   
   // Required if `responseType` is 'code', 'id_token code' or 'code id_token'. 
   // If app key contains '\', replace it with '\\'.
-  clientSecret: 'hbQAPQA5pXYrsLjJkPjoB5[17nt=EL-:', 
+  clientSecret: 'dQF(t3uUX8d4q63j92933O22',
 
   // Required, must be true for B2C
   isB2C: true,
@@ -68,10 +69,12 @@ exports.creds = {
   clockSkew: null,
 };
 
+exports.useMongoDBSessionStore = false
+
 // The url you need to go to destroy the session with AAD, 
 // replace <tenant_name> with your tenant name, and
 // replace <signin_policy_name> with your signin policy name.
 exports.destroySessionUrl = 
-  'https://msaljsb2c.b2clogin.com/msaljsb2c.onmicrosoft.com/oauth2/v2.0/logout' +
-  '?p=B2C_1_susi' +
+  'https://accessibleemploymentprod.b2clogin.com/accessibleemploymentprod.onmicrosoft.com/oauth2/v2.0/logout' +
+  '?p=B2C_1_signin' +
   '&post_logout_redirect_uri=http://localhost:3000';
